@@ -64,8 +64,8 @@ jobs:
           ls && \
           pwd && \
           chmod +x ./gradlew && \
-          ./gradlew build && \
-          ./gradlew run"
+          pkill -f 'java -cp build/libs/.*' || true && \
+          nohup ./gradlew run > /dev/null 2>&1 &"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
