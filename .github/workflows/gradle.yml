@@ -53,7 +53,7 @@ jobs:
           ssh-keyscan -H 158.220.113.254 >> $HOME/.ssh/known_hosts
 
           ssh -i $HOME/.ssh/id_rsa root@158.220.113.254 "\
-          cd kafka-data-streaming && \
+          cd baze-projekt && \
           mkdir -p kafka-data-streaming && \
           cd kafka-data-streaming && \
           git init && \
