@@ -48,11 +48,10 @@ jobs:
       - name: Deploy to VPS
         run: |
           mkdir -p $HOME/.ssh
-          echo "$SSH_PRIVATE_KEY" > $HOME/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > $HOME/.ssh/id_rsa
           chmod 600 $HOME/.ssh/id_rsa
           ssh-keyscan -H 158.220.113.254 >> $HOME/.ssh/known_hosts
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh -i root@158.220.113.254 "echo itworks"
+          ssh -i $HOME/.ssh/id_rsa root@158.220.113.254 "echo itworks"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
