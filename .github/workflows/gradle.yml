@@ -54,8 +54,8 @@ jobs:
 
           ssh -i $HOME/.ssh/id_rsa root@158.220.113.254 "\
           cd kafka-data-streaming && \
-          mkdir -p /kafka-data-streaming && \
-          cd /kafka-data-streaming && \
+          mkdir -p kafka-data-streaming && \
+          cd kafka-data-streaming && \
           git init && \
           git remote add origin https://github.com/timjuic/kafka-iot-data-streaming.git && \
           git fetch && \
