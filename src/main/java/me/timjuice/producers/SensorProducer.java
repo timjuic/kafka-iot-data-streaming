@@ -3,7 +3,6 @@ package me.timjuice.producers;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -31,11 +30,7 @@ public abstract class SensorProducer implements Runnable {
         try (Producer<String, String> producer = new KafkaProducer<>(properties)) {
             while (true) {
                 double sensorValue = generateSensorValue();
-                String message = "{\"sensorId\": \"" + sensorId + "\", \"sensorDescription\": \"" + sensorDescription + "\", \"value\": " + sensorValue + "}";
-
-                producer.send(new ProducerRecord<>(topic, message));
-
-                System.out.println("Produced message: " + message);
+                produceMessage(producer, topic, sensorValue);
 
                 TimeUnit.SECONDS.sleep(intervalSeconds);
             }
@@ -44,13 +39,8 @@ public abstract class SensorProducer implements Runnable {
         }
     }
 
-    // This method is abstract and must be implemented by subclasses
     protected abstract double generateSensorValue();
 
-    // Method to produce a message, can be overridden by subclasses for customization
-    public void produceMessage(Producer<String, String> producer, String topic, double sensorValue) {
-        // Default implementation
-        // You can override this method in subclasses if you need to customize message production
-    }
+    // Method to produce a message, must be implemented by subclasses
+    public abstract void produceMessage(Producer<String, String> producer, String topic, double sensorValue);
 }
-
