@@ -65,7 +65,7 @@ jobs:
           pwd && \
           chmod +x ./gradlew && \
           pkill -f 'java -cp build/libs/.*' || true && \
-          nohup ./gradlew run > /dev/null 2>&1 &"
+          nohup java -jar build\libs\kafka-data-streaming-1.0-SNAPSHOT.jar > ../app.logs 2>&1 &
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
