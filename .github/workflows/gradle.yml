@@ -59,12 +59,13 @@ jobs:
           git init && \
           git remote -v | grep -q 'origin' || git remote add origin https://github.com/timjuic/kafka-iot-data-streaming.git && \
           git fetch && \
+          git reset --hard origin/main && \
           git pull origin main && \
           ls && \
           pwd && \
           chmod +x ./gradlew && \
-          ./gradlew build && \
-          ./gradlew run"
+          pkill -f 'java -cp build/libs/.*' || true && \
+          nohup java -jar build\libs\kafka-data-streaming-1.0-SNAPSHOT.jar > ../app.logs 2>&1 &"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
