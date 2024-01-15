@@ -17,10 +17,5 @@ repositories {
 dependencies {
     implementation ("org.apache.kafka:kafka-clients:3.6.1")
     implementation("ch.qos.logback:logback-classic:1.4.12")
-//    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-//    testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.0-rc1")
 }
-
-//tasks.test {
-//    useJUnitPlatform()
-//}

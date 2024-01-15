@@ -1,10 +1,11 @@
 package me.timjuice.producers;
 
 public enum KafkaTopic {
-    TEMPERATURE_DATA("temperature-data"),
-    MOTION_DATA("motion-sensor-data"),
-    DOOR_DATA("door-sensor-data"),
-    VIBRATION_DATA("vibration-sensor-data");
+    TEMPERATURE_DATA("temperature"),
+    MOTION_DATA("motion"),
+    DOOR_DATA("door"),
+    VIBRATION_DATA("vibration"),
+    SOUND_DATA("sound");
 
     private final String topicName;
 

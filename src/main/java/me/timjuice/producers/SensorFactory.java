@@ -1,6 +1,10 @@
 package me.timjuice.producers;
 
 
+import me.timjuice.producers.sensors.MotionSensorProducer;
+import me.timjuice.producers.sensors.TemperatureSensorProducer;
+import me.timjuice.producers.sensors.VibrationSensorProducer;
+
 import java.util.ArrayList;
 import java.util.List;
 
