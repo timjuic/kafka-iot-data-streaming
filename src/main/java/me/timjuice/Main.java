@@ -2,34 +2,41 @@ package me.timjuice;
 
 import me.timjuice.producers.SensorFactory;
 
+import java.util.List;
+
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        // Create and start temperature sensor threads
-        Thread temperatureThread = SensorFactory.createTemperatureSensorThread();
-        startThreads(temperatureThread);
+        // Create and start all sensor threads
+        List<Thread> allThreads = List.of(
+                SensorFactory.createTemperatureSensorThread(),
+                SensorFactory.createMotionSensorThread(),
+                SensorFactory.createMotionSensorThread2(),
+                SensorFactory.createDoorSensorThread1(),
+                SensorFactory.createDoorSensorThread2(),
+                SensorFactory.createVibrationSensorThread1()
+        );
+        startThreads(allThreads);
 
-        // Create and start motion sensor threads
-        Thread motionSensorProducerThread1 = SensorFactory.createMotionSensorThread();
-        Thread motionSensorProducerThread2 = SensorFactory.createMotionSensorThread2();
-        startThreads(motionSensorProducerThread1, motionSensorProducerThread2);
-
-        // Create and start door sensor threads
-        Thread doorSensorProducerThread1 = SensorFactory.createDoorSensorThread1();
-        Thread doorSensorProducerThread2 = SensorFactory.createDoorSensorThread2();
-        startThreads(doorSensorProducerThread1, doorSensorProducerThread2);
-
-        // Create and start vibration sensor thread
-        Thread vibrationSensorProducerThread1 = SensorFactory.createVibrationSensorThread1();
-        startThreads(vibrationSensorProducerThread1);
+        // Wait for threads to finish (optional)
+        joinThreads(allThreads);
     }
 
-    private static void startThreads(Thread... threads) {
+    private static void startThreads(List<Thread> threads) {
         for (Thread thread : threads) {
-            thread.setDaemon(true);
             thread.start();
+        }
+    }
+
+    private static void joinThreads(List<Thread> threads) {
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

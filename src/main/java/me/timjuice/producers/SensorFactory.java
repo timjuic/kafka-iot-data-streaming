@@ -1,12 +1,15 @@
 package me.timjuice.producers;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SensorFactory {
 
-    private static final String TEMPERATURE_TOPIC = KafkaTopic.TEMPERATURE_DATA.getTopicName();
+    private static final List<Thread> createdThreads = new ArrayList<>();
 
     public static Thread createTemperatureSensorThread() {
-        return new Thread(
+        Thread thread = new Thread(
                 new TemperatureSensorProducer(
                         KafkaTopic.TEMPERATURE_DATA.getTopicName(),
                         "Temp_001",
@@ -14,10 +17,12 @@ public class SensorFactory {
                         10
                 )
         );
+        createdThreads.add(thread);
+        return thread;
     }
 
     public static Thread createMotionSensorThread() {
-        return new Thread(
+        Thread thread = new Thread(
                 new MotionSensorProducer(
                         KafkaTopic.MOTION_DATA.getTopicName(),
                         "Motion_001",
@@ -25,10 +30,12 @@ public class SensorFactory {
                         8
                 )
         );
+        createdThreads.add(thread);
+        return thread;
     }
 
     public static Thread createMotionSensorThread2() {
-        return new Thread(
+        Thread thread = new Thread(
                 new MotionSensorProducer(
                         KafkaTopic.MOTION_DATA.getTopicName(),
                         "Motion_002",
@@ -36,10 +43,12 @@ public class SensorFactory {
                         8
                 )
         );
+        createdThreads.add(thread);
+        return thread;
     }
 
     public static Thread createDoorSensorThread1() {
-        return new Thread(
+        Thread thread = new Thread(
                 new MotionSensorProducer(
                         KafkaTopic.DOOR_DATA.getTopicName(),
                         "Door_001",
@@ -47,10 +56,12 @@ public class SensorFactory {
                         20
                 )
         );
+        createdThreads.add(thread);
+        return thread;
     }
 
     public static Thread createDoorSensorThread2() {
-        return new Thread(
+        Thread thread = new Thread(
                 new MotionSensorProducer(
                         KafkaTopic.DOOR_DATA.getTopicName(),
                         "Door_002",
@@ -58,10 +69,12 @@ public class SensorFactory {
                         20
                 )
         );
+        createdThreads.add(thread);
+        return thread;
     }
 
     public static Thread createVibrationSensorThread1() {
-        return new Thread(
+        Thread thread = new Thread(
                 new VibrationSensorProducer(
                         KafkaTopic.VIBRATION_DATA.getTopicName(),
                         "Vibration_001",
@@ -69,7 +82,11 @@ public class SensorFactory {
                         20
                 )
         );
+        createdThreads.add(thread);
+        return thread;
     }
 
-    // Add methods for creating other sensor threads here, e.g., createDoorSensorThread, createSmokeSensorThread, createVibrationSensorThread, etc.
+    public static List<Thread> getAllThreads() {
+        return new ArrayList<>(createdThreads);
+    }
 }
