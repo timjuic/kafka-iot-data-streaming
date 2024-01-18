@@ -28,7 +28,7 @@ public class MotionSensorProducer extends SensorProducer {
         messageMap.put("sensorId", sensorId);
         messageMap.put("sensorType", topic);
         messageMap.put("sensorDescription", sensorDescription);
-        messageMap.put("motionDetected", (int) sensorValue);
+        messageMap.put("value", (int) sensorValue);
 
         try {
             String message = objectMapper.writeValueAsString(messageMap);

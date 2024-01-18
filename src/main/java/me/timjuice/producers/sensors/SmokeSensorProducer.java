@@ -17,7 +17,7 @@ public class SmokeSensorProducer extends SensorProducer {
 
     @Override
     public void produceMessage(Producer<String, String> producer, String topic, double sensorValue) {
-        String message = "{\"sensorId\": \"" + sensorId + "\", \"sensorDescription\": \"" + sensorDescription + "\", \"smokeDetected\": " + (int) sensorValue + "}";
+        String message = "{\"sensorId\": \"" + sensorId + "\", \"sensorDescription\": \"" + sensorDescription + "\", \"value\": " + (int) sensorValue + "}";
         producer.send(new ProducerRecord<>(topic, message));
         System.out.println("Produced message: " + message);
     }

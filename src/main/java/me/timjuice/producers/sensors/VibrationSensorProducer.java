@@ -29,7 +29,7 @@ public class VibrationSensorProducer extends SensorProducer {
         messageMap.put("sensorId", sensorId);
         messageMap.put("sensorType", topic);
         messageMap.put("sensorDescription", sensorDescription);
-        messageMap.put("vibrationLevel", sensorValue);
+        messageMap.put("value", sensorValue);
 
         try {
             String message = objectMapper.writeValueAsString(messageMap);

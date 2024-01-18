@@ -26,7 +26,7 @@ public class HumiditySensorProducer extends SensorProducer {
         messageMap.put("sensorId", sensorId);
         messageMap.put("sensorType", topic);
         messageMap.put("sensorDescription", sensorDescription);
-        messageMap.put("humidity", sensorValue);
+        messageMap.put("value", sensorValue);
 
         try {
             String message = objectMapper.writeValueAsString(messageMap);

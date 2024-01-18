@@ -16,7 +16,6 @@ public class SoundSensorProducer extends SensorProducer {
 
     @Override
     protected double generateSensorValue() {
-        // Implement the logic to generate a sound sensor value (e.g., simulate sound levels)
         return Math.random() * 100; // Replace with actual logic
     }
 
@@ -29,7 +28,7 @@ public class SoundSensorProducer extends SensorProducer {
         messageMap.put("sensorId", sensorId);
         messageMap.put("sensorType", topic);
         messageMap.put("sensorDescription", sensorDescription);
-        messageMap.put("soundLevel", sensorValue);
+        messageMap.put("value", sensorValue);
 
         try {
             String message = objectMapper.writeValueAsString(messageMap);

@@ -28,7 +28,7 @@ public class TemperatureSensorProducer extends SensorProducer {
         messageMap.put("sensorId", sensorId);
         messageMap.put("sensorType", topic);
         messageMap.put("sensorDescription", sensorDescription);
-        messageMap.put("temperature", sensorValue);
+        messageMap.put("value", sensorValue);
 
         try {
             String message = objectMapper.writeValueAsString(messageMap);

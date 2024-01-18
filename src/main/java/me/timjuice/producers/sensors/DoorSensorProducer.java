@@ -28,7 +28,7 @@ public class DoorSensorProducer extends SensorProducer {
         messageMap.put("sensorId", sensorId);
         messageMap.put("sensorType", topic);
         messageMap.put("sensorDescription", sensorDescription);
-        messageMap.put("doorStatus", (int) sensorValue);
+        messageMap.put("value", (int) sensorValue);
 
         try {
             String message = objectMapper.writeValueAsString(messageMap);
