@@ -5,19 +5,21 @@ import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 
 import java.util.Properties;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public abstract class SensorProducer implements Runnable {
     protected final String topic;
     protected final String sensorId;
     protected final String sensorDescription;
-    protected final int intervalSeconds;
+    protected final int baseIntervalSeconds;  // Use baseIntervalSeconds to determine the baseline interval
+    protected final Random random = new Random();
 
-    public SensorProducer(String topic, String sensorId, String sensorDescription, int intervalSeconds) {
+    public SensorProducer(String topic, String sensorId, String sensorDescription, int baseIntervalSeconds) {
         this.topic = topic;
         this.sensorId = sensorId;
         this.sensorDescription = sensorDescription;
-        this.intervalSeconds = intervalSeconds;
+        this.baseIntervalSeconds = baseIntervalSeconds;
     }
 
     @Override
@@ -32,7 +34,11 @@ public abstract class SensorProducer implements Runnable {
                 double sensorValue = generateSensorValue();
                 produceMessage(producer, topic, sensorValue);
 
-                TimeUnit.SECONDS.sleep(intervalSeconds);
+                // Add a random offset to the interval
+                int randomOffset = random.nextInt(baseIntervalSeconds);
+                int totalInterval = baseIntervalSeconds + randomOffset;
+
+                TimeUnit.SECONDS.sleep(totalInterval);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

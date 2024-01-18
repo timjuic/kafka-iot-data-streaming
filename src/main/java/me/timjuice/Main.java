@@ -11,16 +11,17 @@ public class Main {
         // Create and start all sensor threads
         List<Thread> allThreads = List.of(
                 SensorFactory.createTemperatureSensorThread(),
+                SensorFactory.createTemperatureSensorThread2(),
                 SensorFactory.createMotionSensorThread(),
                 SensorFactory.createMotionSensorThread2(),
                 SensorFactory.createDoorSensorThread1(),
                 SensorFactory.createDoorSensorThread2(),
                 SensorFactory.createVibrationSensorThread1(),
+                SensorFactory.createSoundSensorThread1(),
                 SensorFactory.createHumiditySensorThread1()
         );
         startThreads(allThreads);
 
-        // Wait for threads to finish (optional)
         joinThreads(allThreads);
     }
 

@@ -1,10 +1,7 @@
 package me.timjuice.producers;
 
 
-import me.timjuice.producers.sensors.HumiditySensorProducer;
-import me.timjuice.producers.sensors.MotionSensorProducer;
-import me.timjuice.producers.sensors.TemperatureSensorProducer;
-import me.timjuice.producers.sensors.VibrationSensorProducer;
+import me.timjuice.producers.sensors.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +16,19 @@ public class SensorFactory {
                         KafkaTopic.TEMPERATURE_DATA.getTopicName(),
                         "Temp_001",
                         "Downstairs temperature sensor",
+                        10
+                )
+        );
+        createdThreads.add(thread);
+        return thread;
+    }
+
+    public static Thread createTemperatureSensorThread2() {
+        Thread thread = new Thread(
+                new TemperatureSensorProducer(
+                        KafkaTopic.TEMPERATURE_DATA.getTopicName(),
+                        "Temp_002",
+                        "Upstairs temperature sensor",
                         10
                 )
         );
@@ -98,6 +108,19 @@ public class SensorFactory {
                         "Humidity_001",
                         "House humidity sensor",
                         20
+                )
+        );
+        createdThreads.add(thread);
+        return thread;
+    }
+
+    public static Thread createSoundSensorThread1() {
+        Thread thread = new Thread(
+                new SoundSensorProducer(
+                        KafkaTopic.SOUND_DATA.getTopicName(),
+                        "Sound_001",
+                        "House sound sensor",
+                        10
                 )
         );
         createdThreads.add(thread);
