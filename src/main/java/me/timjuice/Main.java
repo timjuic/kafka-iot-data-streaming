@@ -15,7 +15,8 @@ public class Main {
                 SensorFactory.createMotionSensorThread2(),
                 SensorFactory.createDoorSensorThread1(),
                 SensorFactory.createDoorSensorThread2(),
-                SensorFactory.createVibrationSensorThread1()
+                SensorFactory.createVibrationSensorThread1(),
+                SensorFactory.createHumiditySensorThread1()
         );
         startThreads(allThreads);
 

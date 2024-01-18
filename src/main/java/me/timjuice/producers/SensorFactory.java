@@ -1,6 +1,7 @@
 package me.timjuice.producers;
 
 
+import me.timjuice.producers.sensors.HumiditySensorProducer;
 import me.timjuice.producers.sensors.MotionSensorProducer;
 import me.timjuice.producers.sensors.TemperatureSensorProducer;
 import me.timjuice.producers.sensors.VibrationSensorProducer;
@@ -83,6 +84,19 @@ public class SensorFactory {
                         KafkaTopic.VIBRATION_DATA.getTopicName(),
                         "Vibration_001",
                         "Vibration sensor",
+                        20
+                )
+        );
+        createdThreads.add(thread);
+        return thread;
+    }
+
+    public static Thread createHumiditySensorThread1() {
+        Thread thread = new Thread(
+                new HumiditySensorProducer(
+                        KafkaTopic.HUMIDITY_DATA.getTopicName(),
+                        "Humidity_001",
+                        "House humidity sensor",
                         20
                 )
         );

@@ -5,7 +5,8 @@ public enum KafkaTopic {
     MOTION_DATA("motion"),
     DOOR_DATA("door"),
     VIBRATION_DATA("vibration"),
-    SOUND_DATA("sound");
+    SOUND_DATA("sound"),
+    HUMIDITY_DATA("humidity");
 
     private final String topicName;
 
