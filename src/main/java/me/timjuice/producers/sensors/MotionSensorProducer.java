@@ -16,8 +16,7 @@ public class MotionSensorProducer extends SensorProducer {
 
     @Override
     protected double generateSensorValue() {
-        // Simulate a binary motion detection (1 for motion, 0 for no motion)
-        return Math.random() < 0.5 ? 0 : 1;
+        return 1;
     }
 
     @Override

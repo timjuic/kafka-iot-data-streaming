@@ -11,7 +11,6 @@ public class SmokeSensorProducer extends SensorProducer {
 
     @Override
     protected double generateSensorValue() {
-        // Simulate a binary smoke status (1 for detected, 0 for not detected)
         return Math.random() < 0.5 ? 0 : 1;
     }
 

@@ -3,7 +3,6 @@ plugins {
 }
 
 application {
-    // Specify the main class for your application
     mainClass.set("me.timjuice.Main")
 }
 

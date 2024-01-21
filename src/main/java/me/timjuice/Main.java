@@ -7,8 +7,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-
-        // Create and start all sensor threads
         List<Thread> allThreads = List.of(
                 SensorFactory.createTemperatureSensorThread(),
                 SensorFactory.createTemperatureSensorThread2(),
@@ -21,7 +19,6 @@ public class Main {
                 SensorFactory.createHumiditySensorThread1()
         );
         startThreads(allThreads);
-
         joinThreads(allThreads);
     }
 

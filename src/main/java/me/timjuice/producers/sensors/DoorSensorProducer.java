@@ -23,7 +23,6 @@ public class DoorSensorProducer extends SensorProducer {
     public void produceMessage(Producer<String, String> producer, String topic, double sensorValue) {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        // Create a Map representing your JSON structure
         Map<String, Object> messageMap = new HashMap<>();
         messageMap.put("sensorId", sensorId);
         messageMap.put("sensorType", topic);

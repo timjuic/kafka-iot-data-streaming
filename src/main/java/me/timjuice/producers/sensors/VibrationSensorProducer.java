@@ -16,7 +16,6 @@ public class VibrationSensorProducer extends SensorProducer {
 
     @Override
     protected double generateSensorValue() {
-        // Simulate a continuous vibration value
         return Math.random() * 10;
     }
 
@@ -24,7 +23,6 @@ public class VibrationSensorProducer extends SensorProducer {
     public void produceMessage(Producer<String, String> producer, String topic, double sensorValue) {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        // Create a Map representing your JSON structure for the vibration sensor
         Map<String, Object> messageMap = new HashMap<>();
         messageMap.put("sensorId", sensorId);
         messageMap.put("sensorType", topic);

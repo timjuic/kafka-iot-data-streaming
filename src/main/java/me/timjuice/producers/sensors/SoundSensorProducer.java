@@ -16,7 +16,7 @@ public class SoundSensorProducer extends SensorProducer {
 
     @Override
     protected double generateSensorValue() {
-        return Math.random() * 100; // Replace with actual logic
+        return Math.random() * 100;
     }
 
     @Override

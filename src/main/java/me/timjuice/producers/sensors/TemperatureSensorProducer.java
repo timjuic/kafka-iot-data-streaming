@@ -15,7 +15,6 @@ public class TemperatureSensorProducer extends SensorProducer {
 
     @Override
     protected double generateSensorValue() {
-        // Generate temperature value logic
         return Math.random() * 10 + 20;
     }
 
@@ -23,7 +22,6 @@ public class TemperatureSensorProducer extends SensorProducer {
     public void produceMessage(Producer<String, String> producer, String topic, double sensorValue) {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        // Create a Map representing your JSON structure for the temperature sensor
         Map<String, Object> messageMap = new HashMap<>();
         messageMap.put("sensorId", sensorId);
         messageMap.put("sensorType", topic);

@@ -12,7 +12,7 @@ public abstract class SensorProducer implements Runnable {
     protected final String topic;
     protected final String sensorId;
     protected final String sensorDescription;
-    protected final int baseIntervalSeconds;  // Use baseIntervalSeconds to determine the baseline interval
+    protected final int baseIntervalSeconds;
     protected final Random random = new Random();
 
     public SensorProducer(String topic, String sensorId, String sensorDescription, int baseIntervalSeconds) {
@@ -21,7 +21,6 @@ public abstract class SensorProducer implements Runnable {
         this.sensorDescription = sensorDescription;
         this.baseIntervalSeconds = baseIntervalSeconds;
     }
-
     @Override
     public void run() {
         Properties properties = new Properties();
@@ -33,20 +32,14 @@ public abstract class SensorProducer implements Runnable {
             while (true) {
                 double sensorValue = generateSensorValue();
                 produceMessage(producer, topic, sensorValue);
-
-                // Add a random offset to the interval
                 int randomOffset = random.nextInt(baseIntervalSeconds);
                 int totalInterval = baseIntervalSeconds + randomOffset;
-
                 TimeUnit.SECONDS.sleep(totalInterval);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-
     protected abstract double generateSensorValue();
-
-    // Method to produce a message, must be implemented by subclasses
     public abstract void produceMessage(Producer<String, String> producer, String topic, double sensorValue);
 }
